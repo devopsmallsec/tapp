@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import LandingScreen from "./src/screens/landing";
+import "react-native-gesture-handler";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import React from "react";
+import MainNavigation from "./src/navigation/Main";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  let [fontsLoaded] = useFonts({
+    "Montserrat-Black": require("./assets/fonts/Montserrat-Black.ttf"),
+    "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return <MainNavigation />;
+};
+
+export default App;
